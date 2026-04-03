@@ -168,3 +168,5 @@ class ImageCaptioningWithAttention(nn.Module):
         encoder_out          = self.encoder(images)
         predictions, alphas  = self.decoder(encoder_out, captions)
         return predictions, alphas
+
+        

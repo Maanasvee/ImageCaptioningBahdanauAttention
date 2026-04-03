@@ -6,3 +6,5 @@ __pycache__/
 *.pyc
 .env
 uploads/"
+data/Images/
+.ipynb_checkpoints/

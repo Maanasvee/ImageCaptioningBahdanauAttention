@@ -1,9 +1,12 @@
 import torch
 import os
 import sys
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from PIL import Image
 sys.path.insert(0, os.path.dirname(__file__))
-from model_attention import ImageCaptioningWithAttention
+from model import ImageCaptioningWithAttention
 from preprocess import val_transform
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
