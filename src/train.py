@@ -7,7 +7,7 @@ import time
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pad_sequence
 from PIL import Image
-from model_attention import ImageCaptioningWithAttention
+from model import ImageCaptioningWithAttention
 from preprocess import encode_caption, train_transform, val_transform
 
 # ══════════════════════════════════════════════════════════════════
