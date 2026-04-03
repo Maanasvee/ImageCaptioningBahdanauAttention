@@ -1,0 +1,19 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.page{background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.3);padding:40px;width:100%;max-width:600px;text-align:center}
+header{margin-bottom:32px}
+header h1{font-size:28px;font-weight:700;color:#1a1a2e}
+header p{color:#6b7280;font-size:14px;margin-top:6px}
+.upload-area{border:2px dashed #c4b5fd;border-radius:16px;padding:40px 20px;cursor:pointer;transition:all .2s;margin-bottom:20px;min-height:220px;display:flex;align-items:center;justify-content:center;background:#faf5ff;overflow:hidden}
+.upload-area:hover{border-color:#7c3aed;background:#f3e8ff}
+.upload-icon{font-size:48px;margin-bottom:12px}
+.upload-area p{color:#6b7280;font-size:16px}
+.upload-area span{color:#9ca3af;font-size:13px}
+#preview{max-width:100%;max-height:300px;border-radius:12px;object-fit:contain}
+.caption-btn{width:100%;padding:14px;background:#7c3aed;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s;margin-bottom:20px}
+.caption-btn:hover:not(:disabled){background:#6d28d9}
+.caption-btn:disabled{background:#c4b5fd;cursor:not-allowed}
+.result{background:#f5f3ff;border:1px solid #ddd6fe;border-radius:12px;padding:20px;margin-bottom:16px;text-align:left}
+.caption-label{font-size:12px;font-weight:600;color:#7c3aed;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.caption-text{font-size:18px;color:#1a1a2e;line-height:1.6;font-style:italic}
+.status{font-size:14px;color:#7c3aed;min-height:20px}

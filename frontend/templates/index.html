@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Captioning</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>🖼️ Image Captioning with Attention</h1>
+      <p>ResNet50 + Bahdanau Attention + LSTM Decoder</p>
+    </header>
+
+    <div class="upload-area" id="upload-area" onclick="document.getElementById('file-input').click()"
+         ondragover="event.preventDefault()" ondrop="handleDrop(event)">
+      <div id="placeholder">
+        <div class="upload-icon">📁</div>
+        <p>Click or drag & drop an image</p>
+        <span>JPG, PNG supported</span>
+      </div>
+      <img id="preview" src="" alt="preview" style="display:none"/>
+    </div>
+
+    <input type="file" id="file-input" accept="image/*" style="display:none" onchange="handleFile(this.files[0])"/>
+
+    <button class="caption-btn" id="caption-btn" onclick="getCaption()" disabled>
+      Generate Caption
+    </button>
+
+    <div class="result" id="result" style="display:none">
+      <div class="caption-label">Generated Caption</div>
+      <div class="caption-text" id="caption-text"></div>
+    </div>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    let selectedFile = null;
+
+    function handleFile(file) {
+      if (!file) return;
+      selectedFile = file;
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById('preview').src = e.target.result;
+        document.getElementById('preview').style.display = 'block';
+        document.getElementById('placeholder').style.display = 'none';
+        document.getElementById('caption-btn').disabled = false;
+        document.getElementById('result').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('image/')) handleFile(file);
+    }
+
+    async function getCaption() {
+      if (!selectedFile) return;
+      setStatus('Generating caption...');
+      document.getElementById('caption-btn').disabled = true;
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+      try {
+        const res  = await fetch('/caption', {method:'POST', body: formData});
+        const data = await res.json();
+        document.getElementById('caption-text').textContent = data.caption || data.error;
+        document.getElementById('result').style.display = 'block';
+        setStatus('');
+      } catch {
+        setStatus('Error connecting to server.');
+      }
+      document.getElementById('caption-btn').disabled = false;
+    }
+
+    function setStatus(msg) {
+      document.getElementById('status').textContent = msg;
+    }
+  </script>
+</body>
+</html>
