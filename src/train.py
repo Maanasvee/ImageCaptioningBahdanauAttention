@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import pickle
 import os
+import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -77,14 +78,7 @@ if __name__ == "__main__":
     with open(os.path.join(data_dir, "image_captions.pkl"), "rb") as f: image_captions = pickle.load(f)
 
     # Find images
-    img_dir = None
-    for root, dirs, files in os.walk(data_dir):
-        for d in dirs:
-            if "image" in d.lower() or "img" in d.lower():
-                img_dir = os.path.join(root, d)
-                break
-        if img_dir: break
-    assert img_dir, "Images folder not found!"
+    img_dir = "/kaggle/input/datasets/adityajn105/flickr8k/Images"
     print(f"Images: {img_dir} | Vocab: {len(vocab)}")
 
     all_imgs   = list(image_captions.keys())
