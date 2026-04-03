@@ -2,6 +2,9 @@ import torch
 import torch.nn as nn
 import pickle
 import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 import random
 import time
 from torch.utils.data import Dataset, DataLoader
