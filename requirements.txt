@@ -1,0 +1,7 @@
+torch>=2.0.0
+torchvision
+kagglehub
+flask
+numpy
+pillow
+tqdm
